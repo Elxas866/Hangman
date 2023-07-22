@@ -13,11 +13,17 @@
         <div id="hangman">
             <img id="image" src="assets/hangman/1.svg" alt="12 tries left">
         </div>
+
         <span id="board">X__X_</span>
-        <input type="text" name="input" id="input" maxlength="1">
+
+        <div id="input_area">
+            <input type="text" name="input" id="input" maxlength="1" placeholder="X">
+            <button id="try_btn">Try</button>
+        </div>
+        
         <div id="used">
             <p>Used:</p>
-            <span id="used_chars">EF</span>
+            <span id="used_chars"></span>
         </div>
     </main>
 </body>

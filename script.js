@@ -1,4 +1,6 @@
 let board = document.getElementById("board");
+let word;
+let counter = 1;
 
 window.addEventListener("load", () => {
     console.log("Body loaded");
@@ -13,25 +15,65 @@ window.addEventListener("load", () => {
         })
         .then(data => {
             console.log(data);
-            printBoard(data[0]);
+            initBoard(data[0]);
+            word = data[0];
         })
         .catch(error => {
             console.error('Error:', error.message);
         });
 });
 
-const input = document.getElementById("input");
-input.addEventListener("keyup", (e) => {
-    console.log(e.key);
+document.getElementById("try_btn").addEventListener("click", () => {
+    const input = document.getElementById("input");
 
-    validate(e.key);
+    console.log(input.value);
+    if (isInWord(input.value)) {
+        console.log("In word");
+        updateBoard(input.value);
+    }else {
+        console.log("Not in word");
+        if (!usedAlready(input.value)) {
+            updateUsed(input.value);
+            updateHangman();
+        }
+    }
+
+    input.value = '';
 });
 
 
-function printBoard(word) {
+function initBoard(word) {
     //console.log(word);
     board.innerHTML = '';
     for (let i=0; i < word.length; i++) {
         board.innerHTML += '_';
     }
+}
+
+function isInWord(char) {
+    return word.includes(char);
+}
+
+function usedAlready(char) {
+    const used_chars = document.getElementById("used_chars");
+
+    return used_chars.innerHTML.includes(char);
+}
+
+function updateUsed(char) {
+    const used_chars = document.getElementById("used_chars");
+
+    used_chars.innerHTML += char;
+}
+
+function updateHangman() {
+    const image = document.getElementById("image");
+    if (counter < 12) {
+        counter++;
+        image.src = "assets/hangman/" + counter + ".svg";
+    }else {
+        board.innerHTML = "Lost";
+        image.src = "assets/hangman/13.svg";
+    }
+
 }
