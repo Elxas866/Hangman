@@ -30,6 +30,9 @@ document.getElementById("try_btn").addEventListener("click", () => {
     if (isInWord(input.value)) {
         console.log("In word");
         updateBoard(input.value);
+        if (won()) {
+            board.innerHTML = "Won";
+        }
     }else {
         console.log("Not in word");
         if (!usedAlready(input.value)) {
@@ -52,6 +55,23 @@ function initBoard(word) {
 
 function isInWord(char) {
     return word.includes(char);
+}
+
+function updateBoard(char) {
+    for (let i=0; i < word.length; i++) {
+        if (word[i] == char) {
+            board.innerHTML = board.innerHTML.substring(0, i) + char + board.innerHTML.substring(i+1);
+        }
+    }
+}
+
+function won() {
+    for (let i=0; i < board.innerHTML.length; i++) {
+        if (board.innerHTML[i] == '_') {
+            return false;
+        }
+    }
+    return true;
 }
 
 function usedAlready(char) {
