@@ -29,14 +29,14 @@ document.getElementById("try_btn").addEventListener("click", () => {
     console.log(input.value);
     if (isInWord(input.value.toLowerCase())) {
         console.log("In word");
-        updateBoard(input.value);
+        updateBoard(input.value.toLowerCase());
         if (won()) {
             board.innerHTML = "Won";
         }
     }else {
         console.log("Not in word");
         if (!usedAlready(input.value)) {
-            updateUsed(input.value);
+            updateUsed(input.value.toLowerCase());
             updateHangman();
         }
     }
