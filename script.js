@@ -27,7 +27,7 @@ document.getElementById("try_btn").addEventListener("click", () => {
     const input = document.getElementById("input");
 
     console.log(input.value);
-    if (isInWord(input.value)) {
+    if (isInWord(input.value.toLowerCase())) {
         console.log("In word");
         updateBoard(input.value);
         if (won()) {
