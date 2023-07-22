@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
             }
         })
         .then(data => {
-            console.log(data);
+            //console.log(data);
             initBoard(data[0]);
             word = data[0];
         })
