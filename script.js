@@ -77,7 +77,7 @@ function won() {
 function usedAlready(char) {
     const used_chars = document.getElementById("used_chars");
 
-    return used_chars.innerHTML.includes(char);
+    return used_chars.innerHTML.toLowerCase().includes(char.toLowerCase());
 }
 
 function updateUsed(char) {
