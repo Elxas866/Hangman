@@ -7,7 +7,7 @@ let counter = 1;
 window.addEventListener("load", () => {
     console.log("Body loaded");
 
-    fetch("https://random-word-api.herokuapp.com/word") // API Call
+    fetch("https://random-word-api.herokuapp.com/word?lang=de") // API Call
         .then(response => {
             if (!response.ok) {
                 board.innerText = "ERROR";
@@ -18,6 +18,7 @@ window.addEventListener("load", () => {
         .then(data => {
             //console.log(data);
             word = data[0];
+            word = word.toLowerCase();
             initBoard(word);
         })
         .catch(error => {
@@ -33,7 +34,7 @@ document.getElementById("try_btn").addEventListener("click", () => {
         console.log("In word");
         updateBoard(input.value.toLowerCase());
         if (won()) {
-            board.innerHTML = "Won";
+            board.innerHTML = "Gewonnen";
         }
     }else {
         console.log("Not in word");
@@ -54,6 +55,7 @@ function initBoard(word) {
     for (let i=0; i < word.length; i++) {
         board.innerHTML += '_';
     }
+    console.log("Board initialized");
 }
 
 function isInWord(char) {
@@ -95,7 +97,7 @@ function updateHangman() {
         counter++;
         image.src = "assets/hangman/" + counter + ".svg";
     }else {
-        board.innerHTML = "Lost";
+        board.innerHTML = "Verloren";
         image.src = "assets/hangman/13.svg";
     }
 
