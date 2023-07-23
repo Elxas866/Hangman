@@ -36,6 +36,7 @@ span {
 #board {
     color: var(--c5);
     text-transform: uppercase;
+    word-wrap: break-word;
 }
 
 #input_area {

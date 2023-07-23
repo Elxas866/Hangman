@@ -1,11 +1,13 @@
+// Globals
 let board = document.getElementById("board");
 let word;
 let counter = 1;
 
+// EventListeners
 window.addEventListener("load", () => {
     console.log("Body loaded");
 
-    fetch("https://random-word-api.herokuapp.com/word")
+    fetch("https://random-word-api.herokuapp.com/word") // API Call
         .then(response => {
             if (!response.ok) {
                 board.innerText = "ERROR";
@@ -15,8 +17,8 @@ window.addEventListener("load", () => {
         })
         .then(data => {
             //console.log(data);
-            initBoard(data[0]);
             word = data[0];
+            initBoard(word);
         })
         .catch(error => {
             console.error('Error:', error.message);
@@ -45,6 +47,7 @@ document.getElementById("try_btn").addEventListener("click", () => {
 });
 
 
+// Functions
 function initBoard(word) {
     //console.log(word);
     board.innerHTML = '';
