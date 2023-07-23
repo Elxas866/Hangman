@@ -99,6 +99,7 @@ function updateHangman() {
     }else {
         board.innerHTML = "Verloren";
         image.src = "assets/hangman/13.svg";
+        alert("Verloren! Das Wort war: " + word);
     }
 
 }
