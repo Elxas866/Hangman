@@ -34,7 +34,7 @@ document.getElementById("try_btn").addEventListener("click", () => {
         console.log("In word");
         updateBoard(input.value.toLowerCase());
         if (won()) {
-            board.innerHTML = "Gewonnen";
+            alert("Du hast das Wort erraten!");
         }
     }else {
         console.log("Not in word");
@@ -97,7 +97,6 @@ function updateHangman() {
         counter++;
         image.src = "assets/hangman/" + counter + ".svg";
     }else {
-        board.innerHTML = "Verloren";
         image.src = "assets/hangman/13.svg";
         alert("Verloren! Das Wort war: " + word);
     }
